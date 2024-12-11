@@ -47,20 +47,19 @@ menu = ["Tổng Quan", "Thực Hiện & Đánh Giá Model", "Gợi ý theo thôn
 choice = st.sidebar.selectbox('Menu', menu)
 st.sidebar.write("""#### Thành viên thực hiện:
                  Lý Quốc Hồng Phúc & Phạm Anh Vũ""")
-st.sidebar.markdown("""
-    <style>
-        .sidebar-image img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-    </style>
-""", unsafe_allow_html=True)
-st.sidebar.markdown('<div class="sidebar-image"><img src="phucly.png"></div>', unsafe_allow_html=True)
-st.sidebar.markdown('<div class="sidebar-image"><img src="vupham.jpg"></div>', unsafe_allow_html=True)
+from PIL import Image
+
+# Function to preprocess the image
+def resize_image(image_path, size=(200, 200)):
+    img = Image.open(image_path)
+    img = img.resize(size, Image.ANTIALIAS)
+    return img
+
+# Display preprocessed images
+st.sidebar.image(resize_image('phucly.png'))
+st.sidebar.image(resize_image('vupham.jpg'))
 st.sidebar.write("#### Giảng viên hướng dẫn: Cô Khuất Thùy Phương")
-st.sidebar.markdown('<div class="sidebar-image"><img src="khuat_thuy_phuong.jpg"></div>', unsafe_allow_html=True)
+st.sidebar.image(resize_image('khuat_thuy_phuong.jpg'))
 st.sidebar.write("""#### Thời gian thực hiện: 12/2024""")
 
 if choice == 'Tổng Quan':
