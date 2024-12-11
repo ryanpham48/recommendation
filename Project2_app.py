@@ -45,7 +45,7 @@ st.markdown(
     "<h1 style='text-align: center;'>DATA SCIENCE PROJECT<br>Hệ Thống Gợi Ý Sản Phẩm</h1>",
     unsafe_allow_html=True,
 )
-menu = ["Tổng Quan", "Thực Hiện & Đánh Giá Model", "Gợi ý theo thông tin khách hàng", "Gợi ý sản theo thông tin sản phẩm"]
+menu = ["Tổng Quan", "Thực Hiện & Đánh Giá Model", "Gợi ý theo thông tin khách hàng", "Gợi ý theo thông tin sản phẩm"]
 choice = st.sidebar.selectbox('Menu', menu)
 st.sidebar.write("""#### Thành viên thực hiện:
                  Lý Quốc Hồng Phúc & Phạm Anh Vũ""")
