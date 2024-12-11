@@ -47,11 +47,20 @@ menu = ["Tổng Quan", "Thực Hiện & Đánh Giá Model", "Gợi ý theo thôn
 choice = st.sidebar.selectbox('Menu', menu)
 st.sidebar.write("""#### Thành viên thực hiện:
                  Lý Quốc Hồng Phúc & Phạm Anh Vũ""")
-image_width = 200  
-st.sidebar.image('phucly.png', width=image_width)
-st.sidebar.image('vupham.jpg', width=image_width)
+st.sidebar.markdown("""
+    <style>
+        .sidebar-image img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+st.sidebar.markdown('<div class="sidebar-image"><img src="phucly.png"></div>', unsafe_allow_html=True)
+st.sidebar.markdown('<div class="sidebar-image"><img src="vupham.jpg"></div>', unsafe_allow_html=True)
 st.sidebar.write("#### Giảng viên hướng dẫn: Cô Khuất Thùy Phương")
-st.sidebar.image('khuat_thuy_phuong.jpg', width=image_width)
+st.sidebar.markdown('<div class="sidebar-image"><img src="khuat_thuy_phuong.jpg"></div>', unsafe_allow_html=True)
 st.sidebar.write("""#### Thời gian thực hiện: 12/2024""")
 
 if choice == 'Tổng Quan':
