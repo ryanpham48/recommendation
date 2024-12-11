@@ -47,9 +47,8 @@ menu = ["Tổng Quan", "Thực Hiện & Đánh Giá Model", "Gợi ý theo thôn
 choice = st.sidebar.selectbox('Menu', menu)
 st.sidebar.write("""#### Thành viên thực hiện:
                  Lý Quốc Hồng Phúc & Phạm Anh Vũ""")
-image_width = 150 
 st.sidebar.image('phucly.png')
-st.sidebar.image('vupham.jpg',width=image_width)
+st.sidebar.image('vupham.jpg')
 st.sidebar.write("#### Giảng viên hướng dẫn: Cô Khuất Thùy Phương")
 st.sidebar.image('khuat_thuy_phuong.jpg')
 st.sidebar.write("""#### Thời gian thực hiện: 12/2024""")
@@ -77,50 +76,13 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
 
     I. Collaborative Filtering:  
     > * Nguyên lý: Dựa vào hành vi của cộng đồng người dùng (lịch sử mua sắm và nội dung đánh giá), tìm kiếm các khách hàng có hành vi mua sắm hoặc đánh giá tương tự để tìm ra những mối liên hệ tiềm ẩn giữa khách hàng và sản phẩm mà Content-Based Filtering không thể, để đề xuất sản phẩm phù hợp cho người dùng.  
-    > * Thuật toán: Sử dụng các mô hình từ thư viện Surprise để dự đoán điểm đánh giá sản phẩm cho người dùng. Các thuật toán được áp dụng bao gồm:  
-    >> 1. SVD (Singular Value Decomposition)  
-    >> 2. SVD++ (Cải tiến SVD)   
-    >> 3. NMF (Non-negative Matrix Factorization)  
-    >> 4. SlopeOne  
-    >> 5. KNNBasic
-    >> 6. KNNBaseline
-    >> 7. KNNWithMeans
-    >> 8. KNNWithZScore  
-    >> 9. CoClustering  
-    >> 10. BaselineOnly  
-    > * Các bước xây dựng mô hình huấn luyện 10 thuật toán trên:  
-    >> 1. Dữ liệu đầu vào: mã khách hàng, mã sản phẩm và số sao.  
-    >> 2. Chuẩn bị tập dữ liệu cho thư viện Surprise.  
-    >> 3. Xây dựng mô hình.  
-    >> 4. Kiểm tra chéo 5 lần gấp.  
-    >> 5. Dữ liệu đầu ra: Đánh giá RMSE và MAE với test set.  
-    >> 6. Chọn ra và huấn luyện thuật toán tốt nhất với toàn bộ dữ liệu.  
-    >> 7. Lưu mô hình của thuật toán tốt nhất.  
-    >> 8. Viết hàm đề xuất sản phẩm cho người dùng (recommend_and_enrich_products):  
-    >>> - Dữ liệu đầu vào của hàm đề xuất sản phẩm:  
-    >>>> + Dataframe của nội dung đánh giá sản phẩm (mã khách hàng, mã sản phẩm và số sao)  
-    >>>> + Dataframe của nội dung sản phẩm (mã sản phẩm, tên sản phẩm và mô tả)  
-    >>>> + Mã khách hàng  
-    >>>> + Số lượng sản phẩm đề xuất (chọn 5 sản phẩm)  
-    >>> - Dữ liệu đầu ra của hàm đề xuất sản phẩm:  
-    >>>> + Dataframe của 5 sản phẩm được đề xuất có điểm đánh giá cao nhất ứng với mã khách hàng được nhập.
-    II.  Content-based Filtering:  
+    > * Thuật toán: Sử dụng các mô hình từ thư viện Surprise để dự đoán điểm đánh giá sản phẩm cho người dùng. Đánh giá các thuật toán:""")
+    st.image('RMSE&MAE', use_container_width=True)
+    st.image('ALS', use_container_width=True)
+    (""" Lựa chọn sử dụng thuật toán ALS. Số lượng sản phẩm đề xuất (chọn 5 sản phẩm). Dataframe của 5 sản phẩm được đề xuất có điểm đánh giá cao nhất ứng với mã khách hàng được nhập.""")
+    ("""II.  Content-based Filtering:  
     > * Nguyên lý: Phân tích thông tin về sản phẩm (như thành phần, công dụng, loại da phù hợp, giá cả, v.v.) để tìm các sản phẩm tương tự dựa trên đặc trưng của chúng.  
-    > * Thuật toán: Sử dụng thuật toán Cosine Similarity để tính độ tương đồng giữa các sản phẩm dựa trên các vector đặc trưng bằng cách tính góc giữa hai vector đặc trưng để xác định độ tương đồng. Giá trị Cosine Similarity càng gần 1 thì độ tương đồng giữa hai sản phẩm càng cao.  
-    > * Các bước xây dựng mô hình cho thuật toán Cosine Similarity:  
-    >> 1. Dữ liệu đầu vào của mô hình là nội dung mô tả sản phẩm đã được tiền xử lý.  
-    >> 2. Vector hóa nội dung mô tả sản phẩm bằng TF-IDF.  
-    >> 3. Tính toán ma trận tương đồng cosine.  
-    >> 4. Dữ liệu đầu ra của mô hình là ma trận tương đồng cosine.  
-    >> 5. Lưu mô hình.  
-    >> 6. Viết hàm đề xuất sản phẩm (get_products_recommendations):  
-    >>> - Dữ liệu đầu vào của hàm đề xuất sản phẩm:  
-    >>>> + Dataframe của nội dung mô tả sản phẩm  
-    >>>> + Mã sản phẩm  
-    >>>> + Ma trận tương đồng cosine giữa các sản phẩm  
-    >>>> + Số lượng sản phẩm tương đồng cao nhất (chọn 4 sản phẩm)  
-    >>> - Dữ liệu đầu ra của hàm đề xuất sản phẩm:  
-    >>>> + Dataframe của 4 sản phẩm tương tự nhất với sản phẩm có mã sản phẩm được nhập. """)
+    > * Thuật toán: Sử dụng thuật toán Cosine Similarity """)
 
 elif choice == 'Gợi ý theo thông tin khách hàng':    
     # Hàm để kiểm tra khách hàng và đề xuất sản phẩm
