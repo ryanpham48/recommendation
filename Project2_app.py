@@ -214,6 +214,7 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
 
         # Trả về danh sách sản phẩm được đề xuất
         return products.iloc[product_indices]
+    
     # Hiển thị đề xuất ra bảng
     def display_recommended_products_2(get_products_recommendations, cols=4):
         for i in range(0, len(get_products_recommendations), cols):
@@ -228,6 +229,7 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
                         truncated_description = ' '.join(product_description.split()[:100]) + '...'
                         expander.write(truncated_description)
                         expander.markdown("Nhấn vào mũi tên để đóng hộp text này.")
+                        
     # Đọc dữ liệu sản phẩm
     products = pd.read_csv('San_pham.csv')
 
@@ -260,8 +262,7 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
             selected_product = st.selectbox(
                 "Chọn sản phẩm để xem gợi ý:",
                 options=matching_products.itertuples(),
-                format_func=lambda x: x.ten_san_pham
-            )
+                format_func=lambda x: x.ten_san_pham)
 
             if selected_product:
                 st.write("### Bạn đã chọn:")
@@ -271,8 +272,7 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
 
                 # Lấy danh sách sản phẩm gợi ý
                 recommendations = get_products_recommendations(
-                    products, selected_product.ma_san_pham, cosine_sim_new, nums=4
-                )
+                    products, selected_product.ma_san_pham, cosine_sim_new, nums=4)
 
                 if not recommendations.empty:
                     st.write("Các sản phẩm gợi ý liên quan:")
