@@ -259,14 +259,12 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
         matching_products = products[products['ten_san_pham'].str.contains(product_name_input, case=False, na=False)]
         
         if not matching_products.empty:
-            # Add an index column for display
-            matching_products['index'] = matching_products.index + 1
             
-            # Hiển thị các sản phẩm tìm được cùng với chỉ số (in a table format)
-            st.write("### Sản phẩm tìm được:")
+            # Hiển thị các sản phẩm tìm được
+            st.write("Danh mục sản phẩm tìm được:")
             
             # Display the matching products as a DataFrame
-            st.dataframe(matching_products[['index', 'ma_san_pham', 'ten_san_pham']])  # Streamlit DataFrame display
+            st.dataframe(matching_products[['ma_san_pham', 'ten_san_pham']])  # Streamlit DataFrame display
             
             # Người dùng chọn sản phẩm từ danh sách
             selected_product = st.selectbox(
