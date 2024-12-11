@@ -217,7 +217,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
                     st.warning(error)
                 elif not recommendations.empty:
                     st.write("Các sản phẩm gợi ý cho khách hàng:")
-                    display_recommended_products_1(recommendations, cols=4)
+                    display_recommended_products_1(recommendations, cols=5)
                 else:
                     st.write("Không có sản phẩm nào được đề xuất.")
             else:
