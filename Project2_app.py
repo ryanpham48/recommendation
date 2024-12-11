@@ -71,18 +71,19 @@ if choice == 'Tổng Quan':
 
 elif choice == 'Thực Hiện & Đánh Giá Model':
     # Giao diện Streamlit
-    st.title("Phương pháp giải quyết bài toán")
+    st.write("##Phương pháp giải quyết bài toán")
     st.image('Hasaki.logo.wide.jpg', use_container_width=True)
     # Nội dung phương pháp giải quyết bài toán
     st.markdown("""
-    #### Để giải quyết nhu cầu của Hasaki, hệ thống sẽ sử dụng kết hợp hai phương pháp: **Content-based Filtering** và **Collaborative Filtering** 
+    ##### Để giải quyết nhu cầu của Hasaki, hệ thống sẽ sử dụng kết hợp hai phương pháp: **Content-based Filtering** và **Collaborative Filtering** 
     I. Collaborative Filtering:  
     > * Nguyên lý: Dựa vào hành vi của cộng đồng người dùng (lịch sử mua sắm và nội dung đánh giá), tìm kiếm các khách hàng có hành vi mua sắm hoặc đánh giá tương tự để tìm ra những mối liên hệ tiềm ẩn giữa khách hàng và sản phẩm mà Content-Based Filtering không thể, để đề xuất sản phẩm phù hợp cho người dùng.  
     > * Thuật toán: Sử dụng các mô hình từ thư viện Surprise để dự đoán điểm đánh giá sản phẩm cho người dùng. Đánh giá các thuật toán:""")
     st.image('RMSE&MAE.png', use_container_width=True)
     st.image('ALS.png', use_container_width=True)
     st.write(""" Lựa chọn sử dụng thuật toán ALS. Số lượng sản phẩm đề xuất (chọn 5 sản phẩm). Dataframe của 5 sản phẩm được đề xuất có điểm đánh giá cao nhất ứng với mã khách hàng được nhập.""")
-    st.markdown("""II.  Content-based Filtering:  
+    st.markdown("""
+    II.  Content-based Filtering:  
     > * Nguyên lý: Phân tích thông tin về sản phẩm (như thành phần, công dụng, loại da phù hợp, giá cả, v.v.) để tìm các sản phẩm tương tự dựa trên đặc trưng của chúng.  
     > * Thuật toán: Sử dụng thuật toán Cosine Similarity """)
 
