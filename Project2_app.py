@@ -1,7 +1,45 @@
 import streamlit as st
 import pandas as pd
 import pickle
-
+st.markdown("""
+    <style>
+    body {
+        background-color: #F7F8FA;
+        font-family: 'Roboto', sans-serif;
+    }
+    .stApp {
+        background-color: #FFFFFF;
+        border-radius: 15px;
+        padding: 10px;
+    }
+    .css-1aumxhk {  /* Sidebar */
+        background-color: #E8F5E9;
+        font-family: 'Georgia', serif;
+    }
+    h1, h2, h3 {
+        color: #4CAF50;
+        font-weight: bold;
+    }
+    .stDownloadButton {
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #4CAF50;
+        color: white;
+    }
+    .st-bar-chart {
+        background-color: #E3F2FD;
+    }
+    .stButton > button {
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #4CAF50;
+        border-radius: 10px;
+        border: none;
+        padding: 10px 20px;
+    }
+    </style>
+""", unsafe_allow_html=True)
 # GUI
 st.title("Data Science Project")
 st.write("## Hệ thống gợi ý sản phẩm mỹ phẩm")
@@ -10,7 +48,10 @@ menu = ["Phát biểu bài toán", "Phương pháp giải quyết bài toán", "
 choice = st.sidebar.selectbox('Menu', menu)
 st.sidebar.write("""#### Thành viên thực hiện:
                  Lý Quốc Hồng Phúc & Phạm Anh Vũ""")
+st.sidebar.image('phucly.png')
+st.sidebar.image('vupham.jpg')
 st.sidebar.write("""#### Giảng viên hướng dẫn: Cô Khuất Thùy Phương""")
+st.sidebar.image('khuat_thuy_phuong.jpg')
 st.sidebar.write("""#### Thời gian thực hiện: 12/2024""")
 
 if choice == 'Phát biểu bài toán':
@@ -29,7 +70,7 @@ if choice == 'Phát biểu bài toán':
 elif choice == 'Phương pháp giải quyết bài toán':
     # Giao diện Streamlit
     st.title("Phương pháp giải quyết bài toán")
-    st.image('hasaki_banner.jpg', use_container_width=True)
+    st.image('Hasaki.logo.wide.jpg', use_container_width=True)
     # Nội dung phương pháp giải quyết bài toán
     st.markdown("""
     **Để giải quyết bài toán trên, hệ thống sẽ sử dụng kết hợp hai phương pháp: **Content-based Filtering** và **Collaborative Filtering**.**
