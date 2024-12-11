@@ -119,9 +119,9 @@ elif choice == 'Phương pháp giải quyết bài toán':
     >>>> + Dataframe của nội dung đánh giá sản phẩm (mã khách hàng, mã sản phẩm và số sao)  
     >>>> + Dataframe của nội dung sản phẩm (mã sản phẩm, tên sản phẩm và mô tả)  
     >>>> + Mã khách hàng  
-    >>>> + Số lượng sản phẩm đề xuất (chọn 5 sản phẩm)  
+    >>>> + Số lượng sản phẩm đề xuất (chọn 4 sản phẩm)  
     >>> - Dữ liệu đầu ra của hàm đề xuất sản phẩm:  
-    >>>> + Dataframe của 5 sản phẩm được đề xuất có điểm đánh giá cao nhất ứng với mã khách hàng được nhập.""")
+    >>>> + Dataframe của 4 sản phẩm được đề xuất có điểm đánh giá cao nhất ứng với mã khách hàng được nhập.""")
 
 elif choice == 'Gợi ý sản phẩm theo thông tin khách hàng':    
     # Hàm để kiểm tra khách hàng và đề xuất sản phẩm
@@ -138,20 +138,20 @@ elif choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
             lambda x: best_algorithm.predict(ma_khach_hang, x).est
         )
 
-        # Lấy top 5 sản phẩm dựa trên EstimateScore
-        top_5_df = df_score.sort_values(by=['EstimateScore'], ascending=False).head(5)
-        top_5_df['ma_khach_hang'] = ma_khach_hang
+        # Lấy top 4 sản phẩm dựa trên EstimateScore
+        top_4_df = df_score.sort_values(by=['EstimateScore'], ascending=False).head(4)
+        top_4_df['ma_khach_hang'] = ma_khach_hang
 
         # Kết hợp với thông tin sản phẩm từ products_sub_pandas
-        enriched_top_5_df = pd.merge(
-            top_5_df,
+        enriched_top_4_df = pd.merge(
+            top_4_df,
             products_sub_pandas,
             on='ma_san_pham',
             how='left'
         )
-        return enriched_top_5_df, None
+        return enriched_top_4_df, None
     # Hiển thị đề xuất ra bảng
-    def display_recommended_products_1(recommend_products_for_customer, cols=5):
+    def display_recommended_products_1(recommend_products_for_customer, cols=4):
         for i in range(0, len(recommend_products_for_customer), cols):
             cols = st.columns(cols)
             for j, col in enumerate(cols):
@@ -217,7 +217,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
                     st.warning(error)
                 elif not recommendations.empty:
                     st.write("Các sản phẩm gợi ý cho khách hàng:")
-                    display_recommended_products_1(recommendations, cols=5)
+                    display_recommended_products_1(recommendations, cols=4)
                 else:
                     st.write("Không có sản phẩm nào được đề xuất.")
             else:
