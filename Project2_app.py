@@ -150,7 +150,21 @@ elif choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
             how='left'
         )
         return enriched_top_5_df, None
-    
+    # Hiển thị đề xuất ra bảng
+    def display_recommended_products(get_products_recommendations, cols=5):
+        for i in range(0, len(get_products_recommendations), cols):
+            cols = st.columns(cols)
+            for j, col in enumerate(cols):
+                if i + j < len(get_products_recommendations):
+                    product = get_products_recommendations.iloc[i + j]
+                    with col:   
+                        st.write(product['ten_san_pham'])                    
+                        expander = st.expander(f"Mô tả")
+                        product_description = product['mo_ta']
+                        truncated_description = ' '.join(product_description.split()[:100]) + '...'
+                        expander.write(truncated_description)
+                        expander.markdown("Nhấn vào mũi tên để đóng hộp text này.")
+                        
     # Đọc dữ liệu khách hàng, sản phẩm, và đánh giá
     customers = pd.read_csv('Khach_hang.csv')
     products = pd.read_csv('San_pham.csv')
@@ -202,12 +216,8 @@ elif choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
                 if error:
                     st.warning(error)
                 elif not recommendations.empty:
-                    st.write("### Sản phẩm gợi ý:")
-                    for _, rec_product in recommendations.iterrows():
-                        #st.write(f"- **{rec_product['ten_san_pham']}**")
-                        #st.write(f"  _{rec_product['mo_ta'][:50000]}..._")
-                        st.write(f"- **Tên:** {rec_product['ten_san_pham']}")
-                        st.write(f"- **Mô tả:** {rec_product['mo_ta'][:50000]}...")
+                    st.write("Các sản phẩm gợi ý cho khách hàng:")
+                    display_recommended_products(recommendations, cols=4)
                 else:
                     st.write("Không có sản phẩm nào được đề xuất.")
             else:
@@ -237,21 +247,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
 
         # Trả về danh sách sản phẩm được đề xuất
         return products.iloc[product_indices]
-    # Hiển thị đề xuất ra bảng
-    def display_recommended_products(get_products_recommendations, cols=5):
-        for i in range(0, len(get_products_recommendations), cols):
-            cols = st.columns(cols)
-            for j, col in enumerate(cols):
-                if i + j < len(get_products_recommendations):
-                    product = get_products_recommendations.iloc[i + j]
-                    with col:   
-                        st.write(product['ten_san_pham'])                    
-                        expander = st.expander(f"Mô tả")
-                        product_description = product['mo_ta']
-                        truncated_description = ' '.join(product_description.split()[:100]) + '...'
-                        expander.write(truncated_description)
-                        expander.markdown("Nhấn vào mũi tên để đóng hộp text này.")
-                        
+    
     # Đọc dữ liệu sản phẩm
     products = pd.read_csv('San_pham.csv')
 
@@ -299,7 +295,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
                 )
 
                 if not recommendations.empty:
-                    st.write("### Các sản phẩm liên quan:")
+                    st.write("Các sản phẩm gợi ý liên quan:")
                     display_recommended_products(recommendations, cols=4)
                 else:
                     st.write("Không tìm thấy sản phẩm liên quan.")
