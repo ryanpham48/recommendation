@@ -47,19 +47,11 @@ menu = ["Tổng Quan", "Thực Hiện & Đánh Giá Model", "Gợi ý theo thôn
 choice = st.sidebar.selectbox('Menu', menu)
 st.sidebar.write("""#### Thành viên thực hiện:
                  Lý Quốc Hồng Phúc & Phạm Anh Vũ""")
-from PIL import Image
-
-# Function to preprocess the image
-def resize_image(image_path, size=(200, 200)):
-    img = Image.open(image_path)
-    img = img.resize(size, Image.ANTIALIAS)
-    return img
-
-# Display preprocessed images
-st.sidebar.image(resize_image('phucly.png'))
-st.sidebar.image(resize_image('vupham.jpg'))
+image_width = 300 
+st.sidebar.image('phucly.png', width=image_width)
+st.sidebar.image('vupham.jpg')
 st.sidebar.write("#### Giảng viên hướng dẫn: Cô Khuất Thùy Phương")
-st.sidebar.image(resize_image('khuat_thuy_phuong.jpg'))
+st.sidebar.image('khuat_thuy_phuong.jpg', width=image_width)
 st.sidebar.write("""#### Thời gian thực hiện: 12/2024""")
 
 if choice == 'Tổng Quan':
