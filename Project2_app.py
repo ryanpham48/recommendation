@@ -56,7 +56,7 @@ st.sidebar.write("""#### Thời gian thực hiện: 12/2024""")
 
 if choice == 'Tổng Quan':
     # Giao diện Streamlit
-    st.title("Yêu Cầu Thực Hiện")
+    st.title("##Yêu Cầu Thực Hiện")
     st.image('hasaki_banner.jpg', use_container_width=True)
     # Nội dung phát biểu bài toán
     st.write("""
