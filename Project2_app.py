@@ -248,7 +248,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
                         st.write(product['ten_san_pham'])                    
                         expander = st.expander(f"Mô tả")
                         product_description = product['mo_ta']
-                        truncated_description = ' '.join(product_description.split()[:200]) + '...'
+                        truncated_description = ' '.join(product_description.split()[:100]) + '...'
                         expander.write(truncated_description)
                         expander.markdown("Nhấn vào mũi tên để đóng hộp text này.")
                         
@@ -291,16 +291,16 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
                 st.write("### Bạn đã chọn:")
                 st.write(f"- **Tên:** {selected_product.ten_san_pham}")
                 st.write(f"- **Mã:** {selected_product.ma_san_pham}")
-                st.write(f"- **Mô tả:** {selected_product.mo_ta[:50000]}...")
+                st.write(f"- **Mô tả:** {selected_product.mo_ta[:5000]}...")
 
                 # Lấy danh sách sản phẩm gợi ý
                 recommendations = get_products_recommendations(
-                    products, selected_product.ma_san_pham, cosine_sim_new, nums=3
+                    products, selected_product.ma_san_pham, cosine_sim_new, nums=4
                 )
 
                 if not recommendations.empty:
                     st.write("### Các sản phẩm liên quan:")
-                    display_recommended_products(recommendations, cols=4)
+                    display_recommended_products(recommendations, cols=3)
                 else:
                     st.write("Không tìm thấy sản phẩm liên quan.")
         else:
