@@ -71,7 +71,7 @@ if choice == 'Tổng Quan':
 
 elif choice == 'Thực Hiện & Đánh Giá Model':
     # Giao diện Streamlit
-    st.write("##Phương pháp giải quyết bài toán")
+    st.title("Model Evaluation")
     st.image('Hasaki.logo.wide.jpg', use_container_width=True)
     # Nội dung phương pháp giải quyết bài toán
     st.markdown("""
