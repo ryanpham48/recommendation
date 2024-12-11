@@ -151,7 +151,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
         )
         return enriched_top_5_df, None
     # Hiển thị đề xuất ra bảng
-    def display_recommended_products(get_products_recommendations, cols=5):
+    def display_recommended_products_1(recommend_products_for_customer, cols=4):
         for i in range(0, len(get_products_recommendations), cols):
             cols = st.columns(cols)
             for j, col in enumerate(cols):
@@ -217,7 +217,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
                     st.warning(error)
                 elif not recommendations.empty:
                     st.write("Các sản phẩm gợi ý cho khách hàng:")
-                    display_recommended_products(recommendations, cols=4)
+                    display_recommended_products_1(recommendations, cols=4)
                 else:
                     st.write("Không có sản phẩm nào được đề xuất.")
             else:
@@ -247,7 +247,20 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
 
         # Trả về danh sách sản phẩm được đề xuất
         return products.iloc[product_indices]
-    
+    # Hiển thị đề xuất ra bảng
+    def display_recommended_products_2(get_products_recommendations, cols=4):
+        for i in range(0, len(get_products_recommendations), cols):
+            cols = st.columns(cols)
+            for j, col in enumerate(cols):
+                if i + j < len(get_products_recommendations):
+                    product = get_products_recommendations.iloc[i + j]
+                    with col:   
+                        st.write(product['ten_san_pham'])                    
+                        expander = st.expander(f"Mô tả")
+                        product_description = product['mo_ta']
+                        truncated_description = ' '.join(product_description.split()[:100]) + '...'
+                        expander.write(truncated_description)
+                        expander.markdown("Nhấn vào mũi tên để đóng hộp text này.")
     # Đọc dữ liệu sản phẩm
     products = pd.read_csv('San_pham.csv')
 
@@ -296,7 +309,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
 
                 if not recommendations.empty:
                     st.write("Các sản phẩm gợi ý liên quan:")
-                    display_recommended_products(recommendations, cols=4)
+                    display_recommended_products_2(recommendations, cols=4)
                 else:
                     st.write("Không tìm thấy sản phẩm liên quan.")
         else:
