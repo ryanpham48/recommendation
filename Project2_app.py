@@ -77,7 +77,7 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
     st.markdown("""
     ##### Để giải quyết nhu cầu của Hasaki, hệ thống sẽ sử dụng kết hợp hai phương pháp: **Content-based Filtering** và **Collaborative Filtering** 
     I. Collaborative Filtering:  
-    > * Nguyên lý: Dựa vào hành vi của cộng đồng người dùng (lịch sử mua sắm và nội dung đánh giá), tìm kiếm các khách hàng có hành vi mua sắm hoặc đánh giá tương tự để tìm ra những mối liên hệ tiềm ẩn giữa khách hàng và sản phẩm mà Content-Based Filtering không thể, để đề xuất sản phẩm phù hợp cho người dùng.  
+    > * Nguyên lý: Dựa vào hành vi người dùng (lịch sử mua sắm và nội dung đánh giá), tìm kiếm các khách hàng có hành vi mua sắm hoặc đánh giá tương tự để tìm ra những mối liên hệ tiềm ẩn giữa khách hàng và sản phẩm mà Content-Based Filtering không thể, để đề xuất sản phẩm phù hợp cho người dùng.  
     > * Thuật toán: Sử dụng các mô hình từ thư viện Surprise để dự đoán điểm đánh giá sản phẩm cho người dùng. Đánh giá các thuật toán:""")
     st.image('RMSE&MAE.png', use_container_width=True)
     st.image('ALS.png', use_container_width=True)
@@ -86,6 +86,9 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
     II.  Content-based Filtering:  
     > * Nguyên lý: Phân tích thông tin về sản phẩm (như thành phần, công dụng, loại da phù hợp, giá cả, v.v.) để tìm các sản phẩm tương tự dựa trên đặc trưng của chúng.  
     > * Thuật toán: Sử dụng thuật toán Cosine Similarity """)
+    st.image('gensimresults.png', use_container_width=True)
+    st.image('gensim_vs_consine.png', use_container_width=True)
+
 
 elif choice == 'Gợi ý theo thông tin khách hàng':    
     # Hàm để kiểm tra khách hàng và đề xuất sản phẩm
