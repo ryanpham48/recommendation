@@ -300,7 +300,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
 
                 if not recommendations.empty:
                     st.write("### Các sản phẩm liên quan:")
-                    display_recommended_products(recommendations, cols=3)
+                    display_recommended_products(recommendations, cols=4)
                 else:
                     st.write("Không tìm thấy sản phẩm liên quan.")
         else:
