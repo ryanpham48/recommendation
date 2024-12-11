@@ -237,7 +237,21 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
 
         # Trả về danh sách sản phẩm được đề xuất
         return products.iloc[product_indices]
-
+    # Hiển thị đề xuất ra bảng
+    def display_recommended_products(get_products_recommendations, cols=5):
+        for i in range(0, len(get_products_recommendations), cols):
+            cols = st.columns(cols)
+            for j, col in enumerate(cols):
+                if i + j < len(get_products_recommendations):
+                    product = get_products_recommendations.iloc[i + j]
+                    with col:   
+                        st.write(product['ten_san_pham'])                    
+                        expander = st.expander(f"Mô tả")
+                        product_description = product['mo_ta']
+                        truncated_description = ' '.join(product_description.split()[:200]) + '...'
+                        expander.write(truncated_description)
+                        expander.markdown("Nhấn vào mũi tên để đóng hộp text này.")
+                        
     # Đọc dữ liệu sản phẩm
     products = pd.read_csv('San_pham.csv')
 
@@ -276,6 +290,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
             if selected_product:
                 st.write("### Bạn đã chọn:")
                 st.write(f"- **Tên:** {selected_product.ten_san_pham}")
+                st.write(f"- **Mã:** {selected_product.ma_san_pham}")
                 st.write(f"- **Mô tả:** {selected_product.mo_ta[:50000]}...")
 
                 # Lấy danh sách sản phẩm gợi ý
@@ -285,9 +300,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
 
                 if not recommendations.empty:
                     st.write("### Các sản phẩm liên quan:")
-                    for idx, rec_product in enumerate(recommendations.itertuples(), start=1):
-                        st.write(f"{idx}. **Tên:** {rec_product.ten_san_pham}")
-                        st.write(f"- **Mô tả:** {rec_product.mo_ta[:5000]}...")
+                    display_recommended_products(recommendations, cols=4)
                 else:
                     st.write("Không tìm thấy sản phẩm liên quan.")
         else:
