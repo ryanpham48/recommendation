@@ -1,6 +1,17 @@
 import streamlit as st
 import pandas as pd
 import pickle
+st.markdown(
+    """
+    <style>
+    body {
+        background: linear-gradient(135deg, #f5f5f5, #4CAF50); /* Gradient background */
+        color: white;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 st.markdown("""
     <style>
     body {
