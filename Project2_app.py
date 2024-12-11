@@ -151,7 +151,7 @@ elif choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
         )
         return enriched_top_5_df, None
     # Hiển thị đề xuất ra bảng
-    def display_recommended_products_1(recommend_products_for_customer, cols=4):
+    def display_recommended_products_1(recommend_products_for_customer, cols=5):
         for i in range(0, len(recommend_products_for_customer), cols):
             cols = st.columns(cols)
             for j, col in enumerate(cols):
