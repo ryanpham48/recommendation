@@ -183,7 +183,7 @@ elif choice == 'Gợi ý theo thông tin khách hàng':
                 if error:
                     st.warning(error)
                 elif not recommendations.empty:
-                    st.write("Các sản phẩm gợi ý cho khách hàng:")
+                    st.markdown("**CÁC SẢN PHẨM GỢI Ý CHO KHÁCH HÀNG:**")
                     display_recommended_products_1(recommendations, cols=5)
                 else:
                     st.write("Không có sản phẩm nào được đề xuất.")
@@ -275,7 +275,7 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
                     products, selected_product.ma_san_pham, cosine_sim_new, nums=4)
 
                 if not recommendations.empty:
-                    st.write("Các sản phẩm gợi ý liên quan:")
+                    st.markdown("**CÁC SẢN PHẨM GỢI Ý LIÊN QUAN:**")
                     display_recommended_products_2(recommendations, cols=4)
                 else:
                     st.write("Không tìm thấy sản phẩm liên quan.")
