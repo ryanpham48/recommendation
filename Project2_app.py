@@ -41,22 +41,22 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 # GUI
-st.title("DATA SCIENCE PROJECT")
-st.write("## Hệ Thống Gợi Ý Sản Phẩm")
+st.title("DATA SCIENCE PROJECT - Hệ Thống Gợi Ý Sản Phẩm")
 
 menu = ["Tổng Quan", "Thực Hiện & Đánh Giá Model", "Gợi ý theo thông tin khách hàng", "Gợi ý sản theo thông tin sản phẩm"]
 choice = st.sidebar.selectbox('Menu', menu)
 st.sidebar.write("""#### Thành viên thực hiện:
                  Lý Quốc Hồng Phúc & Phạm Anh Vũ""")
-st.sidebar.image('phucly.png')
-st.sidebar.image('vupham.jpg')
-st.sidebar.write("""#### Giảng viên hướng dẫn: Cô Khuất Thùy Phương""")
-st.sidebar.image('khuat_thuy_phuong.jpg')
+image_width = 200  
+st.sidebar.image('phucly.png', width=image_width)
+st.sidebar.image('vupham.jpg', width=image_width)
+st.sidebar.write("#### Giảng viên hướng dẫn: Cô Khuất Thùy Phương")
+st.sidebar.image('khuat_thuy_phuong.jpg', width=image_width)
 st.sidebar.write("""#### Thời gian thực hiện: 12/2024""")
 
 if choice == 'Tổng Quan':
     # Giao diện Streamlit
-    st.title("##Yêu Cầu Thực Hiện")
+    st.title("Yêu Cầu Thực Hiện")
     st.image('hasaki_banner.jpg', use_container_width=True)
     # Nội dung phát biểu bài toán
     st.write("""
