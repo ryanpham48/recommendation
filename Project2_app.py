@@ -286,8 +286,8 @@ elif choice == 'Gợi ý sản phẩm theo thông tin sản phẩm':
                 if not recommendations.empty:
                     st.write("### Các sản phẩm liên quan:")
                     for idx, rec_product in enumerate(recommendations.itertuples(), start=1):
-                        st.write(f"- **Tên:** {rec_product['ten_san_pham']}")
-                        st.write(f"- **Mô tả:** {rec_product['mo_ta'][:50000]}...")
+                        st.write(f"{idx}. **Tên:** {rec_product.ten_san_pham}")
+                        st.write(f"- **Mô tả:** {rec_product.mo_ta[:5000]}...")
                 else:
                     st.write("Không tìm thấy sản phẩm liên quan.")
         else:
