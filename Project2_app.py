@@ -41,8 +41,10 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 # GUI
-st.markdown("# DATA SCIENCE PROJECT  \nHệ Thống Gợi Ý Sản Phẩm")
-
+st.markdown(
+    "<h1 style='text-align: center;'>DATA SCIENCE PROJECT<br>Hệ Thống Gợi Ý Sản Phẩm</h1>",
+    unsafe_allow_html=True,
+)
 menu = ["Tổng Quan", "Thực Hiện & Đánh Giá Model", "Gợi ý theo thông tin khách hàng", "Gợi ý sản theo thông tin sản phẩm"]
 choice = st.sidebar.selectbox('Menu', menu)
 st.sidebar.write("""#### Thành viên thực hiện:
