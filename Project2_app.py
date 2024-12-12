@@ -91,6 +91,7 @@ if choice == 'Tổng Quan':
     1. 💄 Với khách hàng đã có lịch sử mua sắm hoặc tương tác: hệ thống cần dựa trên thông tin mua sắm và nội dung đánh giá của những người dùng khác có sở thích tương tự để đưa ra gợi ý chính xác hơn.
     2. 💡 Với khách hàng mới (chưa có nhiều tương tác với hệ thống), hệ thống cần sử dụng thông tin về sản phẩm để đề xuất các sản phẩm tương tự.
     """)
+    st.image('hasaki.product.png', use_container_width=True)
 
 elif choice == 'Thực Hiện & Đánh Giá Model':
     # Giao diện Streamlit
