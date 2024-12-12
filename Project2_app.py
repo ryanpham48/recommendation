@@ -84,7 +84,7 @@ if choice == 'Tổng Quan':
     st.image('hasaki_banner.jpg', use_container_width=True)
     # Nội dung phát biểu bài toán
     st.write("""
-    🛍️ ** Công ty Hasaki mong muốn xây dựng một hệ thống đề xuất sản phẩm nhằm cá nhân hóa trải nghiệm người dùng, giúp khách hàng dễ dàng tìm kiếm và lựa chọn sản phẩm phù hợp với sở thích và nhu cầu của họ. 
+    🛍️ **Công ty Hasaki mong muốn xây dựng một hệ thống đề xuất sản phẩm nhằm cá nhân hóa trải nghiệm người dùng, giúp khách hàng dễ dàng tìm kiếm và lựa chọn sản phẩm phù hợp với sở thích và nhu cầu của họ. 
     Hệ thống này sẽ phân tích dữ liệu về sản phẩm và hành vi của người dùng để đưa ra các gợi ý hiệu quả, tăng cường sự hài lòng của khách hàng và thúc đẩy doanh số bán hàng.**
 
     **Cụ thể, mục tiêu đặt ra là:**
@@ -113,11 +113,17 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
         st.markdown("""
         Để xây dựng mô hình Content-Based Filtering, chúng tôi đã thử nghiệm và so sánh giữa hai phương pháp chính:
         1. **Gensim (TF-IDF):** 
-            - Sử dụng TF-IDF để vector hóa nội dung mô tả.
-            - Tính toán mức độ tương tự dựa trên ma trận sparse.
+            - Tạo từ điển (Dictionary)
+            - Chuyển đổi văn bản sang Bag-of-Words (BoW)
+            - Tính toán TF-IDF để vector hóa nội dung mô tả.
+            - Tính toán độ tương đồng giữa các tài liệu dựa trên ma trận sparse
+
         2. **Cosine Similarity:**
             - Vector hóa mô tả sản phẩm bằng Bag-of-Words (BOW).
             - Tính toán mức độ tương tự giữa các sản phẩm bằng Cosine Similarity.
+            - Tính toán TF-IDF
+            - Lọc và sắp xếp kết quả
+
         """)
         st.write("### Đánh giá giữa các phương pháp")
         st.markdown("""
