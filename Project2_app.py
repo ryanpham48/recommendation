@@ -81,7 +81,7 @@ st.sidebar.write("""#### Thời gian thực hiện: 12/2024""")
 if choice == 'Tổng Quan':
     # Giao diện Streamlit
     st.subheader("Giới Thiệu Chung")
-    st.image('hasaki_banner.jpg', use_container_width=True)
+    st.image('banner-he-thong-cua-hang-hasaki-09122024.webp', use_container_width=True)
     # Nội dung phát biểu bài toán
     st.write("""
     🛍️ **Công ty Hasaki mong muốn xây dựng một hệ thống đề xuất sản phẩm nhằm cá nhân hóa trải nghiệm người dùng, giúp khách hàng dễ dàng tìm kiếm và lựa chọn sản phẩm phù hợp với sở thích và nhu cầu của họ. 
@@ -307,7 +307,7 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
     # Giao diện Streamlit
     st.subheader("Hệ thống gợi ý sản phẩm theo thông tin sản phẩm")
 
-    st.image('hasaki_banner.jpg', use_container_width=True)
+    st.image('hasaki12.12.jpg', use_container_width=True)
 
     # Người dùng nhập tên sản phẩm
     st.markdown('<p style="font-size:30px; font-weight:bold;">Nhập tên sản phẩm để tìm kiếm:</p>', unsafe_allow_html=True)
