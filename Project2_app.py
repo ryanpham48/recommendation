@@ -305,7 +305,7 @@ elif choice == 'Gợi ý theo thông tin khách hàng':
                 if error:
                     st.warning(error)
                 elif not recommendations.empty:
-                    st.markdown("**CÁC SẢN PHẨM GỢI Ý CHO KHÁCH HÀNG:**")
+                    st.subheader("**CÁC SẢN PHẨM GỢI Ý CHO KHÁCH HÀNG:**")
                     display_recommended_products_1(recommendations, cols=5)
                 else:
                     st.write("Không có sản phẩm nào được đề xuất.")
