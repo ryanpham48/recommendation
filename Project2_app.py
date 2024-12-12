@@ -103,10 +103,10 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
         # Streamlit layout
         st.title("Content-Based Filtering: Quy trình xây dựng và phân tích")
         st.markdown("""
-            II.  Content-based Filtering:  
-            > * Nguyên lý: Phân tích thông tin về sản phẩm (như thành phần, công dụng, loại da phù hợp, giá cả, v.v.) để tìm các sản phẩm tương tự dựa trên đặc trưng của chúng.  
-            > * Thuật toán: Sử dụng thuật toán Cosine Similarity """)
-            st.image('gensimresults.png', use_container_width=True)
+        II.  Content-based Filtering:  
+        > * Nguyên lý: Phân tích thông tin về sản phẩm (như thành phần, công dụng, loại da phù hợp, giá cả, v.v.) để tìm các sản phẩm tương tự dựa trên đặc trưng của chúng.  
+        > * Thuật toán: Sử dụng thuật toán Cosine Similarity """)
+        st.image('gensimresults.png', use_container_width=True)
         # Mô tả chọn model
         st.markdown("""
         Để xây dựng mô hình Content-Based Filtering, chúng tôi đã thử nghiệm và so sánh giữa hai phương pháp chính:
