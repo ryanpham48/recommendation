@@ -226,14 +226,6 @@ elif choice == 'Gợi ý theo thông tin khách hàng':
                             f"**Giá bán:** <span style='color: red; font-size: 1.2em;'>{gia_ban_formatted} ₫</span>", 
                             unsafe_allow_html=True
                         )
-    
-                        # Giá gốc
-                        gia_goc = product.get('gia_goc', 'Không có thông tin')
-                        gia_goc_formatted = (
-                            f"{int(gia_goc):,}" 
-                            if isinstance(gia_goc, (int, float)) and not pd.isnull(gia_goc) 
-                            else gia_goc
-                        )
                         st.markdown(
                             f"<span style='text-decoration: line-through; color: gray; font-size: 0.8em;'>Giá gốc: {gia_goc_formatted} ₫</span>", 
                             unsafe_allow_html=True
@@ -377,14 +369,6 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
                         st.markdown(
                             f"**Giá bán:** <span style='color: red; font-size: 1.2em;'>{gia_ban_formatted} ₫</span>", 
                             unsafe_allow_html=True
-                        )
-    
-                        # Giá gốc
-                        gia_goc = product.get('gia_goc', 'Không có thông tin')
-                        gia_goc_formatted = (
-                            f"{int(gia_goc):,}" 
-                            if isinstance(gia_goc, (int, float)) and not pd.isnull(gia_goc) 
-                            else gia_goc
                         )
                         st.markdown(
                             f"<span style='text-decoration: line-through; color: gray; font-size: 0.8em;'>Giá gốc: {gia_goc_formatted} ₫</span>", 
