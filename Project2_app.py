@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import pickle
 st.set_page_config(
-    page_title="A Recommender System for Hasaki.vn",
+    page_title="Recommender System cho Hasaki.vn",
     page_icon="⭐",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -63,9 +63,10 @@ set_sidebar_style()
 
 # GUI
 st.markdown(
-    "<h1 style='text-align: center;'>DATA SCIENCE PROJECT<br>Hệ Thống Gợi Ý Sản Phẩm</h1>",
+    "<h1 style='color: #2f6e51; margin-bottom: 10px; text-align: center;'>DATA SCIENCE PROJECT<br>Hệ Thống Gợi Ý Sản Phẩm</h1>",
     unsafe_allow_html=True,
 )
+
 menu = ["Tổng Quan", "Thực Hiện & Đánh Giá Model", "Gợi ý theo thông tin khách hàng", "Gợi ý theo thông tin sản phẩm"]
 choice = st.sidebar.selectbox('Menu', menu)
 st.sidebar.write("""#### Thành viên thực hiện:
@@ -83,10 +84,10 @@ if choice == 'Tổng Quan':
     st.image('hasaki_banner.jpg', use_container_width=True)
     # Nội dung phát biểu bài toán
     st.write("""
-    ** 🛍️ Công ty Hasaki mong muốn xây dựng một hệ thống đề xuất sản phẩm nhằm cá nhân hóa trải nghiệm người dùng, giúp khách hàng dễ dàng tìm kiếm và lựa chọn sản phẩm phù hợp với sở thích và nhu cầu của họ. 
+    🛍️ ** Công ty Hasaki mong muốn xây dựng một hệ thống đề xuất sản phẩm nhằm cá nhân hóa trải nghiệm người dùng, giúp khách hàng dễ dàng tìm kiếm và lựa chọn sản phẩm phù hợp với sở thích và nhu cầu của họ. 
     Hệ thống này sẽ phân tích dữ liệu về sản phẩm và hành vi của người dùng để đưa ra các gợi ý hiệu quả, tăng cường sự hài lòng của khách hàng và thúc đẩy doanh số bán hàng.**
 
-    **Cụ thể, bài toán đặt ra là:**
+    **Cụ thể, mục tiêu đặt ra là:**
     1. 💄 Với khách hàng đã có lịch sử mua sắm hoặc tương tác: hệ thống cần dựa trên thông tin mua sắm và nội dung đánh giá của những người dùng khác có sở thích tương tự để đưa ra gợi ý chính xác hơn.
     2. 💡 Với khách hàng mới (chưa có nhiều tương tác với hệ thống), hệ thống cần sử dụng thông tin về sản phẩm để đề xuất các sản phẩm tương tự.
     """)
@@ -96,21 +97,62 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
     st.title("Model Evaluation")
     st.image('Hasaki.logo.wide.jpg', use_container_width=True)
     # Nội dung phương pháp giải quyết bài toán
-    st.markdown("""
-    ##### Để giải quyết nhu cầu của Hasaki, hệ thống sẽ sử dụng kết hợp hai phương pháp: **Content-based Filtering** và **Collaborative Filtering** 
-    I. Collaborative Filtering:  
-    > * Nguyên lý: Dựa vào hành vi người dùng (lịch sử mua sắm và nội dung đánh giá), tìm kiếm các khách hàng có hành vi mua sắm hoặc đánh giá tương tự để tìm ra những mối liên hệ tiềm ẩn giữa khách hàng và sản phẩm mà Content-Based Filtering không thể, để đề xuất sản phẩm phù hợp cho người dùng.  
-    > * Thuật toán: Sử dụng các mô hình từ thư viện Surprise để dự đoán điểm đánh giá sản phẩm cho người dùng. Đánh giá các thuật toán:""")
-    st.image('RMSE&MAE.png', use_container_width=True)
-    st.image('ALS.png', use_container_width=True)
-    st.write(""" Lựa chọn sử dụng thuật toán ALS. Số lượng sản phẩm đề xuất (chọn 5 sản phẩm). Dataframe của 5 sản phẩm được đề xuất có điểm đánh giá cao nhất ứng với mã khách hàng được nhập.""")
-    st.markdown("""
-    II.  Content-based Filtering:  
-    > * Nguyên lý: Phân tích thông tin về sản phẩm (như thành phần, công dụng, loại da phù hợp, giá cả, v.v.) để tìm các sản phẩm tương tự dựa trên đặc trưng của chúng.  
-    > * Thuật toán: Sử dụng thuật toán Cosine Similarity """)
-    st.image('gensimresults.png', use_container_width=True)
-    st.image('gensim_vs_consine.png', use_container_width=True)
+    tab1, tab2 = st.tabs(["Content-Based Filtering", "Collaborative Filtering"])
+    # Tab Content-Based Filtering
+    with tab1:
+        # Streamlit layout
+        st.title("Content-Based Filtering: Quy trình xây dựng và phân tích")
+        st.markdown("""
+            II.  Content-based Filtering:  
+            > * Nguyên lý: Phân tích thông tin về sản phẩm (như thành phần, công dụng, loại da phù hợp, giá cả, v.v.) để tìm các sản phẩm tương tự dựa trên đặc trưng của chúng.  
+            > * Thuật toán: Sử dụng thuật toán Cosine Similarity """)
+            st.image('gensimresults.png', use_container_width=True)
+        # Mô tả chọn model
+        st.markdown("""
+        Để xây dựng mô hình Content-Based Filtering, chúng tôi đã thử nghiệm và so sánh giữa hai phương pháp chính:
+        1. **Gensim (TF-IDF):** 
+            - Sử dụng TF-IDF để vector hóa nội dung mô tả.
+            - Tính toán mức độ tương tự dựa trên ma trận sparse.
+        2. **Cosine Similarity:**
+            - Vector hóa mô tả sản phẩm bằng Bag-of-Words (BOW).
+            - Tính toán mức độ tương tự giữa các sản phẩm bằng Cosine Similarity.
+        """)
+        st.write("### Đánh giá giữa các phương pháp")
+        st.markdown("""
+        | **Model**            | **Ưu điểm**                                                                                   | **Nhược điểm**                                                                 |
+        |-----------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+        | **Gensim**            | - Tối ưu trên dữ liệu lớn nhờ TF-IDF và ma trận sparse.                                       | - Độ đa dạng gợi ý thấp.                                                       |
+        |                       | - Kết hợp tốt giữa nội dung và điểm đánh giá trung bình.                                      | - Yêu cầu tiền xử lý dữ liệu tốt để đạt hiệu quả.                              |
+        | **Cosine Similarity** | - Nhanh hơn và phù hợp trên tập dữ liệu nhỏ hoặc trung bình (<10,000 sản phẩm).               | - Hiệu suất giảm trên tập dữ liệu lớn do tính toán toàn bộ ma trận tương tự.   |
+        |                       | - Độ bao phủ và đa dạng sản phẩm gợi ý tốt hơn Gensim.                                        | - Phụ thuộc nhiều vào vector hóa nội dung, không phân biệt trọng số từ quan trọng. |
+        """)
 
+        st.markdown("""
+        **Lựa chọn:** Dựa trên đánh giá ==> chọn **Consine**.""")
+
+        # Tab Collaborative Filtering
+        with tab2:
+            # Tiêu đề
+            st.title("Collaborative Filtering: Quy trình xây dựng và phân tích")          
+            st.markdown("""
+            Collaborative Filtering:  
+            > * Nguyên lý: Dựa vào hành vi người dùng (lịch sử mua sắm và nội dung đánh giá), tìm kiếm các khách hàng có hành vi mua sắm hoặc đánh giá tương tự để tìm ra những mối liên hệ tiềm ẩn giữa khách hàng và sản phẩm mà Content-Based Filtering không thể, để đề xuất sản phẩm phù hợp cho người dùng.  
+            > * Thuật toán: Sử dụng các mô hình từ thư viện Surprise để dự đoán điểm đánh giá sản phẩm cho người dùng. Đánh giá các thuật toán""")
+            st.image('RMSE&MAE.png', use_container_width=True)
+            st.markdown(""" Chọn sử dụng **KNNBaseline**, vì thuật toán này không chỉ đạt hiệu quả cao mà còn phù hợp với dữ liệu của Hasaki.
+            """)
+            # So sánh giữa ALS và Surprise
+            st.write("### Đánh giá lựa chọn giữa ALS và Surprise")
+            st.markdown("""
+            Để đưa ra quyết định giữa **ALS** và **Surprise**, chúng tôi so sánh dựa các tiêu chí:
+
+            | **Tiêu chí**        | **ALS**                                     | **Surprise**                             |
+            |----------------------|---------------------------------------------|------------------------------------------|
+            | **Mục đích**        | Phân tích ma trận, tối ưu cho dữ liệu lớn.  | Thử nghiệm nhanh các thuật toán gợi ý.   |
+            | **Hiệu suất**       | Phù hợp hơn trên dữ liệu lớn, thưa.         | Phù hợp với dữ liệu vừa và nhỏ.          |
+
+            **Kết luận:** Với tập dữ liệu hiện tại, **Surprise** là lựa chọn tối ưu hơn do chỉ số **RMSE** thấp hơn, và khả năng triển khai nhanh các thuật toán như **KNNBaseline**.
+            """)
 
 elif choice == 'Gợi ý theo thông tin khách hàng':    
     # Hàm để kiểm tra khách hàng và đề xuất sản phẩm
