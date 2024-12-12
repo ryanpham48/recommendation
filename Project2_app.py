@@ -98,7 +98,7 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
     st.subheader("Model Evaluation")
     st.image('Hasaki.logo.wide.jpg', use_container_width=True)
     st.write("""
-        Quy trình xây dựng hệ thống gợi ý tại Hasaki.vn được chia thành hai phương pháp chính: **Content-Based Filtering** & **Collaborative Filtering**
+        Quy trình xây dựng hệ thống gợi ý tại Hasaki.vn được chia thành hai models: **Content-Based Filtering** & **Collaborative Filtering**
     """)
     # Nội dung phương pháp giải quyết bài toán
     tab1, tab2 = st.tabs(["Content-Based Filtering", "Collaborative Filtering"])
@@ -111,7 +111,7 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
         > * Thuật toán: Sử dụng thuật toán Cosine Similarity """)
         # Mô tả chọn model
         st.markdown("""
-        Để xây dựng mô hình Content-Based Filtering, chúng tôi đã thử nghiệm và so sánh giữa hai phương pháp chính:
+        Để xây dựng mô hình Content-Based Filtering, nhóm đã thử nghiệm và so sánh giữa hai phương pháp chính:
         1. **Gensim (TF-IDF):** 
             - Tạo từ điển (Dictionary)
             - Chuyển đổi văn bản sang Bag-of-Words (BoW)
@@ -145,10 +145,10 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
             > * Nguyên lý: Dựa vào hành vi người dùng (lịch sử mua sắm và nội dung đánh giá), tìm kiếm các khách hàng có hành vi mua sắm hoặc đánh giá tương tự để tìm ra những mối liên hệ tiềm ẩn giữa khách hàng và sản phẩm mà Content-Based Filtering không thể, để đề xuất sản phẩm phù hợp cho người dùng.  
             > * Thuật toán: Sử dụng các mô hình từ thư viện Surprise để dự đoán điểm đánh giá sản phẩm cho người dùng.""")
             st.image('RMSE&MAE.png', use_container_width=True)
-            st.markdown(""" Chọn sử dụng **KNNBaseline**, vì thuật toán này không chỉ đạt hiệu quả cao mà còn phù hợp với dữ liệu của Hasaki.
+            st.markdown(""" Nhóm chọn sử dụng **KNNBaseline**, vì thuật toán này không chỉ đạt hiệu quả cao mà còn phù hợp với dữ liệu của Hasaki.
             """)
             st.markdown("""
-            Để đưa ra quyết định giữa **ALS** và **Surprise**, chúng tôi so sánh dựa các tiêu chí:
+            Để đưa ra quyết định giữa **ALS** và **Surprise**, nhóm đã so sánh dựa các tiêu chí:
 
             | **Tiêu chí**        | **ALS**                                     | **Surprise**                             |
             |----------------------|--------------------------------------------|------------------------------------------|
