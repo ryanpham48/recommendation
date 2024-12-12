@@ -185,17 +185,71 @@ elif choice == 'Gợi ý theo thông tin khách hàng':
             how='left'
         )
         return enriched_top_5_df, None
-    # Hiển thị đề xuất ra bảng
+    # Render stars based on the rating
+    def render_stars(rating):
+        """
+        Convert a numeric rating into a string of star icons.
+        """
+        full_star = "⭐"
+        empty_star = "☆"
+        stars = int(round(rating))  # Round to the nearest integer
+        return full_star * stars + empty_star * (5 - stars)
+    
+    # Hiển thị đề xuất ra bảng với chi tiết bổ sung
     def display_recommended_products_1(recommend_products_for_customer, cols=5):
         for i in range(0, len(recommend_products_for_customer), cols):
             cols = st.columns(cols)
             for j, col in enumerate(cols):
                 if i + j < len(recommend_products_for_customer):
                     product = recommend_products_for_customer.iloc[i + j]
-                    with col:   
-                        st.write(product['ten_san_pham'])                    
+                    with col:
+                        # Tên sản phẩm
+                        st.markdown(
+                            f"<h4 style='font-size:18px; font-weight:bold; text-align:center;'>{product['ten_san_pham']}</h4>", 
+                            unsafe_allow_html=True
+                        )
+    
+                        # Mã sản phẩm
+                        st.markdown(
+                            f"**Mã sản phẩm:** <span style='color: blue;'>{product.get('ma_san_pham', 'Không có thông tin')}</span>", 
+                            unsafe_allow_html=True
+                        )
+    
+                        # Giá bán
+                        gia_ban = product.get('gia_ban', 'Không có thông tin')
+                        gia_ban_formatted = (
+                            f"{int(gia_ban):,}" 
+                            if isinstance(gia_ban, (int, float)) and not pd.isnull(gia_ban) 
+                            else gia_ban
+                        )
+                        st.markdown(
+                            f"**Giá bán:** <span style='color: red; font-size: 1.2em;'>{gia_ban_formatted} ₫</span>", 
+                            unsafe_allow_html=True
+                        )
+    
+                        # Giá gốc
+                        gia_goc = product.get('gia_goc', 'Không có thông tin')
+                        gia_goc_formatted = (
+                            f"{int(gia_goc):,}" 
+                            if isinstance(gia_goc, (int, float)) and not pd.isnull(gia_goc) 
+                            else gia_goc
+                        )
+                        st.markdown(
+                            f"<span style='text-decoration: line-through; color: gray; font-size: 0.8em;'>Giá gốc: {gia_goc_formatted} ₫</span>", 
+                            unsafe_allow_html=True
+                        )
+    
+                        # Điểm đánh giá: using render_stars function to display stars
+                        diem_trung_binh = product.get('diem_trung_binh', 0)  # Using 'diem_trung_binh' for rating
+                        stars = render_stars(diem_trung_binh)
+                        st.markdown(
+                            f"**Điểm đánh giá:** {stars} <span style='font-size: 1.0em;'>({diem_trung_binh:.1f})</span>", 
+                            unsafe_allow_html=True
+                        )
+    
+                        # Mô tả sản phẩm trong hộp mở rộng
                         expander = st.expander(f"Mô tả")
-                        product_description = product['mo_ta']
+                        product_description = product.get('mo_ta', "Không có mô tả.")
                         truncated_description = ' '.join(product_description.split()[:100]) + '...'
                         expander.write(truncated_description)
                         expander.markdown("Nhấn vào mũi tên để đóng hộp text này.")
@@ -218,7 +272,7 @@ elif choice == 'Gợi ý theo thông tin khách hàng':
     ho_ten_input = st.text_input("ho_ten_input", key="ho_ten_input", label_visibility="hidden")
 
     # Tăng kích thước chữ cho nhãn "Nhập mã khách hàng"
-    st.markdown('<p style="font-size:30px; font-weight:bold;">Nhập mã khách hàng:</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size:25px; font-weight:bold;">Nhập mã khách hàng:</p>', unsafe_allow_html=True)
     ma_khach_hang_input = st.text_input("ma_khach_hang_input", key="ma_khach_hang_input", label_visibility="hidden")
 
     if ho_ten_input and ma_khach_hang_input:
@@ -375,14 +429,14 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
         if not matching_products.empty:
             
             # Hiển thị các sản phẩm tìm được
-            st.write("Danh mục sản phẩm tìm được:")
+            st.subheader("Danh mục sản phẩm tìm được:")
             
             # Display the matching products as a DataFrame
             st.dataframe(matching_products[['ma_san_pham', 'ten_san_pham']])  # Streamlit DataFrame display
             
             # Người dùng chọn sản phẩm từ danh sách
             selected_product = st.selectbox(
-                "Chọn sản phẩm để xem gợi ý:",
+                "### Chọn sản phẩm để xem gợi ý:",
                 options=matching_products.itertuples(),
                 format_func=lambda x: x.ten_san_pham)
 
@@ -397,7 +451,7 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
                     products, selected_product.ma_san_pham, cosine_sim_new, nums=4)
 
                 if not recommendations.empty:
-                    st.markdown("**CÁC SẢN PHẨM GỢI Ý LIÊN QUAN:**")
+                    st.subheader("**CÁC SẢN PHẨM GỢI Ý LIÊN QUAN:**")
                     display_recommended_products_2(recommendations, cols=4)
                 else:
                     st.write("Không tìm thấy sản phẩm liên quan.")
