@@ -370,11 +370,6 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
                             f"**Giá bán:** <span style='color: red; font-size: 1.2em;'>{gia_ban_formatted} ₫</span>", 
                             unsafe_allow_html=True
                         )
-                        st.markdown(
-                            f"<span style='text-decoration: line-through; color: gray; font-size: 0.8em;'>Giá gốc: {gia_goc_formatted} ₫</span>", 
-                            unsafe_allow_html=True
-                        )
-    
                         # Điểm đánh giá: using render_stars function to display stars
                         diem_trung_binh = product.get('diem_trung_binh', 0)  # Using 'diem_trung_binh' for rating
                         stars = render_stars(diem_trung_binh)
