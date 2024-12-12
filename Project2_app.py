@@ -211,7 +211,7 @@ elif choice == 'Gợi ý theo thông tin khách hàng':
     
                         # Mã sản phẩm
                         st.markdown(
-                            f"**Mã sản phẩm:** <span style='color: blue;'>{product.get('ma_san_pham', 'Không có thông tin')}</span>", 
+                            f"**Mã sản phẩm:** <span style='color: #8ed9ea;'>{product.get('ma_san_pham', 'Không có thông tin')}</span>", 
                             unsafe_allow_html=True
                         )
     
@@ -351,7 +351,7 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
     
                         # Mã sản phẩm
                         st.markdown(
-                            f"**Mã sản phẩm:** <span style='color: blue;'>{product.get('ma_san_pham', 'Không có thông tin')}</span>", 
+                            f"**Mã sản phẩm:** <span style='color: #8ed9ea;'>{product.get('ma_san_pham', 'Không có thông tin')}</span>", 
                             unsafe_allow_html=True
                         )
     
