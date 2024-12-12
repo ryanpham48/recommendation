@@ -108,7 +108,6 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
         st.markdown("""
         > * Nguyên lý: Phân tích thông tin về sản phẩm (như thành phần, công dụng, loại da phù hợp, giá cả, v.v.) để tìm các sản phẩm tương tự dựa trên đặc trưng của chúng.  
         > * Thuật toán: Sử dụng thuật toán Cosine Similarity """)
-        st.image('gensimresults.png', use_container_width=True)
         # Mô tả chọn model
         st.markdown("""
         Để xây dựng mô hình Content-Based Filtering, chúng tôi đã thử nghiệm và so sánh giữa hai phương pháp chính:
@@ -128,6 +127,7 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
         st.write("### Đánh giá giữa các phương pháp")
         st.markdown("""
         **Lựa chọn:** Dựa trên đánh giá ==> chọn **Consine**.""")
+        st.image('MRR.png', use_container_width=True)
         st.markdown("""
         | **Model**             | **Consine Similarity (Scikit-learn)**                                                         | **Gensim**                                                                     |
         |-----------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
