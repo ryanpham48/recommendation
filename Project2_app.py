@@ -52,7 +52,7 @@ def set_sidebar_style():
     sidebar_style = '''
     <style>
     [data-testid="stSidebar"] {
-        background: linear-gradient(-225deg, #f093fb 0%, #f5576c 100%);
+        background: linear-gradient(-225deg, #48c6ef 0%, #6f86d6 100%);
         color: white;
     }
     </style>
