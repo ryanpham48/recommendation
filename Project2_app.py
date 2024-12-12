@@ -94,16 +94,18 @@ if choice == 'Tổng Quan':
 
 elif choice == 'Thực Hiện & Đánh Giá Model':
     # Giao diện Streamlit
-    st.title("Model Evaluation")
+    st.subheader("Model Evaluation")
     st.image('Hasaki.logo.wide.jpg', use_container_width=True)
+    st.write("""
+        Quy trình xây dựng hệ thống gợi ý tại Hasaki.vn được chia thành hai phương pháp chính: **Content-Based Filtering** & **Collaborative Filtering**
+    """)
     # Nội dung phương pháp giải quyết bài toán
     tab1, tab2 = st.tabs(["Content-Based Filtering", "Collaborative Filtering"])
     # Tab Content-Based Filtering
     with tab1:
         # Streamlit layout
-        st.title("Content-Based Filtering: Quy trình xây dựng và phân tích")
+        st.subheader("Content-Based Filtering: Quy trình xây dựng và phân tích")
         st.markdown("""
-        II.  Content-based Filtering:  
         > * Nguyên lý: Phân tích thông tin về sản phẩm (như thành phần, công dụng, loại da phù hợp, giá cả, v.v.) để tìm các sản phẩm tương tự dựa trên đặc trưng của chúng.  
         > * Thuật toán: Sử dụng thuật toán Cosine Similarity """)
         st.image('gensimresults.png', use_container_width=True)
@@ -119,35 +121,30 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
         """)
         st.write("### Đánh giá giữa các phương pháp")
         st.markdown("""
-        | **Model**            | **Ưu điểm**                                                                                   | **Nhược điểm**                                                                 |
-        |-----------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-        | **Gensim**            | - Tối ưu trên dữ liệu lớn nhờ TF-IDF và ma trận sparse.                                       | - Độ đa dạng gợi ý thấp.                                                       |
-        |                       | - Kết hợp tốt giữa nội dung và điểm đánh giá trung bình.                                      | - Yêu cầu tiền xử lý dữ liệu tốt để đạt hiệu quả.                              |
-        | **Cosine Similarity** | - Nhanh hơn và phù hợp trên tập dữ liệu nhỏ hoặc trung bình (<10,000 sản phẩm).               | - Hiệu suất giảm trên tập dữ liệu lớn do tính toán toàn bộ ma trận tương tự.   |
-        |                       | - Độ bao phủ và đa dạng sản phẩm gợi ý tốt hơn Gensim.                                        | - Phụ thuộc nhiều vào vector hóa nội dung, không phân biệt trọng số từ quan trọng. |
-        """)
-
-        st.markdown("""
         **Lựa chọn:** Dựa trên đánh giá ==> chọn **Consine**.""")
+        st.markdown("""
+        | **Model**             | **Consine Similarity (Scikit-learn)**                                                         | **Gensim**                                                                     |
+        |-----------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+        | **Hiệu suất**         |   - Độ bao phủ và đa dạng sản phẩm gợi ý tốt hơn Gensim.                                      | - Độ đa dạng gợi ý thấp, Yêu cầu tiền xử lý dữ liệu tốt để đạt hiệu quả.       |
+        | **Cách Triển Khai**   |   - Đơn giản, trực tiếp bằng Scikit-learn                                                     | - Yêu cầu thêm bước chuẩn bị dữ liệu (từ điển, BoW)                            | 
+        | **Thời Gian**         |   - Nhanh hơn và phù hợp trên tập dữ liệu nhỏ hoặc trung bình (<10,000 sản phẩm).             | - Tối ưu cho dữ liệu lớn, sử dụng ma trận thưa (sparse matrix)                 |
+        """)
 
         # Tab Collaborative Filtering
         with tab2:
             # Tiêu đề
-            st.title("Collaborative Filtering: Quy trình xây dựng và phân tích")          
+            st.subheader("Collaborative Filtering: Quy trình xây dựng và phân tích")          
             st.markdown("""
-            Collaborative Filtering:  
             > * Nguyên lý: Dựa vào hành vi người dùng (lịch sử mua sắm và nội dung đánh giá), tìm kiếm các khách hàng có hành vi mua sắm hoặc đánh giá tương tự để tìm ra những mối liên hệ tiềm ẩn giữa khách hàng và sản phẩm mà Content-Based Filtering không thể, để đề xuất sản phẩm phù hợp cho người dùng.  
-            > * Thuật toán: Sử dụng các mô hình từ thư viện Surprise để dự đoán điểm đánh giá sản phẩm cho người dùng. Đánh giá các thuật toán""")
+            > * Thuật toán: Sử dụng các mô hình từ thư viện Surprise để dự đoán điểm đánh giá sản phẩm cho người dùng.""")
             st.image('RMSE&MAE.png', use_container_width=True)
             st.markdown(""" Chọn sử dụng **KNNBaseline**, vì thuật toán này không chỉ đạt hiệu quả cao mà còn phù hợp với dữ liệu của Hasaki.
             """)
-            # So sánh giữa ALS và Surprise
-            st.write("### Đánh giá lựa chọn giữa ALS và Surprise")
             st.markdown("""
             Để đưa ra quyết định giữa **ALS** và **Surprise**, chúng tôi so sánh dựa các tiêu chí:
 
             | **Tiêu chí**        | **ALS**                                     | **Surprise**                             |
-            |----------------------|---------------------------------------------|------------------------------------------|
+            |----------------------|--------------------------------------------|------------------------------------------|
             | **Mục đích**        | Phân tích ma trận, tối ưu cho dữ liệu lớn.  | Thử nghiệm nhanh các thuật toán gợi ý.   |
             | **Hiệu suất**       | Phù hợp hơn trên dữ liệu lớn, thưa.         | Phù hợp với dữ liệu vừa và nhỏ.          |
 
@@ -202,7 +199,7 @@ elif choice == 'Gợi ý theo thông tin khách hàng':
     reviews = pd.read_csv('Danh_gia_new.csv')
 
     # Giao diện Streamlit
-    st.title("Hệ thống gợi ý sản phẩm theo thông tin khách hàng")
+    st.subheader("Hệ thống gợi ý sản phẩm theo thông tin khách hàng")
 
     st.image('hasaki_banner.jpg', use_container_width=True)
 
@@ -302,7 +299,7 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
         cosine_sim_new = pickle.load(f)
 
     # Giao diện Streamlit
-    st.title("Hệ thống gợi ý sản phẩm theo thông tin sản phẩm")
+    st.subheader("Hệ thống gợi ý sản phẩm theo thông tin sản phẩm")
 
     st.image('hasaki_banner.jpg', use_container_width=True)
 
