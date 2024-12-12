@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 st.set_page_config(
     page_title="A Recommender System for Hasaki.vn",
-    page_icon="🛒",
+    page_icon="fa fa-star",
     layout="wide",
     initial_sidebar_state="expanded",
 )
