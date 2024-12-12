@@ -68,9 +68,10 @@ st.markdown(
 )
 
 menu = ["Tổng Quan", "Thực Hiện & Đánh Giá Model", "Gợi ý theo thông tin khách hàng", "Gợi ý theo thông tin sản phẩm"]
-choice = st.sidebar.selectbox('📚 #### Menu', menu)
-st.sidebar.write("""👨🏻‍🎓👨‍🔧#### Thành viên thực hiện:
-                 Lý Quốc Hồng Phúc & Phạm Anh Vũ""")
+st.sidebar.write("""📚 **Menu**""")
+choice = st.sidebar.selectbox(menu)
+st.sidebar.write("""👨🏻‍🎓👨‍🔧 **Thành viên thực hiện:
+                 Lý Quốc Hồng Phúc & Phạm Anh Vũ** """)
 image_width = 400
 st.sidebar.image('phucly.png')
 st.sidebar.image('vupham.jpg', width=image_width)
