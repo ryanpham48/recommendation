@@ -46,6 +46,21 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
+
+# Tùy chỉnh giao diện sidebar
+def set_sidebar_style():
+    sidebar_style = '''
+    <style>
+    [data-testid="stSidebar"] {
+        background: linear-gradient(-225deg, #84fab0 0%, #8fd3f4 100%);
+        color: white;
+    }
+    </style>
+    '''
+    st.markdown(sidebar_style, unsafe_allow_html=True)
+
+set_sidebar_style()
+
 # GUI
 st.markdown(
     "<h1 style='text-align: center;'>DATA SCIENCE PROJECT<br>Hệ Thống Gợi Ý Sản Phẩm</h1>",
