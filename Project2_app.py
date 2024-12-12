@@ -190,8 +190,8 @@ elif choice == 'Gợi ý theo thông tin khách hàng':
         """
         Convert a numeric rating into a string of star icons.
         """
-        full_star = "⭐"
-        empty_star = "☆"
+        full_star = "<span style='color: yellow;'>⭐</span>"  
+        empty_star = "<span style='color: gray;'>☆</span>"
         stars = int(round(rating))  # Round to the nearest integer
         return full_star * stars + empty_star * (5 - stars)
     
@@ -330,8 +330,8 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
         """
         Convert a numeric rating into a string of star icons.
         """
-        full_star = "⭐"
-        empty_star = "☆"
+        full_star = "<span style='color: yellow;'>⭐</span>"  
+        empty_star = "<span style='color: gray;'>☆</span>"  
         stars = int(round(rating))  # Round to the nearest integer
         return full_star * stars + empty_star * (5 - stars)
     
