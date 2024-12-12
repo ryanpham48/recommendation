@@ -52,7 +52,7 @@ def set_sidebar_style():
     sidebar_style = '''
     <style>
     [data-testid="stSidebar"] {
-        background: linear-gradient(-225deg, #48c6ef 0%, #6f86d6 100%);
+        background: linear-gradient(-225deg, #84fab0 0%, #8fd3f4 100%);
         color: white;
     }
     </style>
@@ -79,15 +79,16 @@ st.sidebar.write("""#### Thời gian thực hiện: 12/2024""")
 
 if choice == 'Tổng Quan':
     # Giao diện Streamlit
-    st.title("Yêu Cầu Thực Hiện")
+    st.subheader("Giới Thiệu Chung")
     st.image('hasaki_banner.jpg', use_container_width=True)
     # Nội dung phát biểu bài toán
     st.write("""
-    **Công ty Hasaki mong muốn xây dựng một hệ thống đề xuất sản phẩm nhằm cá nhân hóa trải nghiệm người dùng, giúp khách hàng dễ dàng tìm kiếm và lựa chọn sản phẩm phù hợp với sở thích và nhu cầu của họ. Hệ thống này sẽ phân tích dữ liệu về sản phẩm và hành vi của người dùng để đưa ra các gợi ý hiệu quả, tăng cường sự hài lòng của khách hàng và thúc đẩy doanh số bán hàng.**
+    ** 🛍️ Công ty Hasaki mong muốn xây dựng một hệ thống đề xuất sản phẩm nhằm cá nhân hóa trải nghiệm người dùng, giúp khách hàng dễ dàng tìm kiếm và lựa chọn sản phẩm phù hợp với sở thích và nhu cầu của họ. 
+    Hệ thống này sẽ phân tích dữ liệu về sản phẩm và hành vi của người dùng để đưa ra các gợi ý hiệu quả, tăng cường sự hài lòng của khách hàng và thúc đẩy doanh số bán hàng.**
 
     **Cụ thể, bài toán đặt ra là:**
-    1. Với khách hàng đã có lịch sử mua sắm hoặc tương tác: hệ thống cần dựa trên thông tin mua sắm và nội dung đánh giá của những người dùng khác có sở thích tương tự để đưa ra gợi ý chính xác hơn.
-    2. Với khách hàng mới (chưa có nhiều tương tác với hệ thống), hệ thống cần sử dụng thông tin về sản phẩm để đề xuất các sản phẩm tương tự.
+    1. 💄 Với khách hàng đã có lịch sử mua sắm hoặc tương tác: hệ thống cần dựa trên thông tin mua sắm và nội dung đánh giá của những người dùng khác có sở thích tương tự để đưa ra gợi ý chính xác hơn.
+    2. 💡 Với khách hàng mới (chưa có nhiều tương tác với hệ thống), hệ thống cần sử dụng thông tin về sản phẩm để đề xuất các sản phẩm tương tự.
     """)
 
 elif choice == 'Thực Hiện & Đánh Giá Model':
