@@ -1,6 +1,12 @@
 import streamlit as st
 import pandas as pd
 import pickle
+st.set_page_config(
+    page_title="A Recommender System for Hasaki.vn",
+    page_icon="🛒",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 st.markdown("""
     <style>
     body {
