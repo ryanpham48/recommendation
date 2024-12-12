@@ -256,11 +256,11 @@ elif choice == 'Gợi ý theo thông tin khách hàng':
     #ho_ten_input = st.text_input("Nhập họ và tên khách hàng:")
     #ma_khach_hang_input = st.text_input("Nhập mã khách hàng:")
     # Tăng kích thước chữ cho nhãn "Nhập họ và tên khách hàng"
-    st.markdown('<p style="font-size:30px; font-weight:bold;">Nhập họ và tên khách hàng:</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size:28px; font-weight:bold;">Nhập họ và tên khách hàng:</p>', unsafe_allow_html=True)
     ho_ten_input = st.text_input("ho_ten_input", key="ho_ten_input", label_visibility="hidden")
 
     # Tăng kích thước chữ cho nhãn "Nhập mã khách hàng"
-    st.markdown('<p style="font-size:25px; font-weight:bold;">Nhập mã khách hàng:</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size:28px; font-weight:bold;">Nhập mã khách hàng:</p>', unsafe_allow_html=True)
     ma_khach_hang_input = st.text_input("ma_khach_hang_input", key="ma_khach_hang_input", label_visibility="hidden")
 
     if ho_ten_input and ma_khach_hang_input:
@@ -394,7 +394,7 @@ elif choice == 'Gợi ý theo thông tin sản phẩm':
     st.image('hasaki12.12.jpg', use_container_width=True)
 
     # Người dùng nhập tên sản phẩm
-    st.markdown('<p style="font-size:30px; font-weight:bold;">Nhập tên sản phẩm để tìm kiếm:</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size:28px; font-weight:bold;">Nhập tên sản phẩm để tìm kiếm:</p>', unsafe_allow_html=True)
     product_name_input = st.text_input("product_name_input", key="product_name_input", label_visibility="hidden")
 
     # Kiểm tra tên sản phẩm
