@@ -127,10 +127,10 @@ elif choice == 'Thực Hiện & Đánh Giá Model':
         """)
         st.write("### Đánh giá giữa các phương pháp")
         st.markdown("""
-        **Lựa chọn:** Dựa trên đánh giá ==> chọn **Consine**.""")
+        **Lựa chọn:** Dựa trên đánh giá ==> chọn **Cosine**.""")
         st.image('MRR.png', use_container_width=True)
         st.markdown("""
-        | **Model**             | **Consine Similarity (Scikit-learn)**                                                         | **Gensim**                                                                     |
+        | **Model**             | **Cosine Similarity (Scikit-learn)**                                                         | **Gensim**                                                                     |
         |-----------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
         | **Hiệu suất**         |   - Độ bao phủ và đa dạng sản phẩm gợi ý tốt hơn Gensim.                                      | - Độ đa dạng gợi ý thấp, Yêu cầu tiền xử lý dữ liệu tốt để đạt hiệu quả.       |
         | **Cách Triển Khai**   |   - Đơn giản, trực tiếp bằng Scikit-learn                                                     | - Yêu cầu thêm bước chuẩn bị dữ liệu (từ điển, BoW)                            | 
